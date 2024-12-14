@@ -5,15 +5,13 @@ from zipfile import ZipFile
 
 DATA_PATH = Path(__file__).parent.parent / "data"
 
-# All the stuff inside your window.
 layout = [  [sg.Text('Milo cie widziec drogi uzytkowniku')],
             [sg.Text('Jesli natrafiles na problem to jestes w dobrym miejscu. Wpisz co sie stalo, a twoj wnuczek zaraz sie tym zajmie.')],
             [sg.Text('Kiedy wystapil problem: '), sg.InputText()],
             [sg.Text('Krotki opis problemu: '), sg.InputText()],
             [sg.Button('Popros o pomoc'), sg.Button('Wyjdz')] ]
 
-# Create the Window
-window = sg.Window('Window Title', layout)
+window = sg.Window('Click Dziadek', layout)
 
 def list_files(directory_path):
     try:

@@ -17,6 +17,7 @@ class ScreenshotThread(Thread):
     def button_clicked(self):
         self.action_counter += 1
         screenshot = self._buffer[-1]
+        print(screenshot)
         # breakpoint()
         # draw = ImageDraw.Draw(screenshot)
 

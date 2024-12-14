@@ -9,7 +9,8 @@ readme = "README.md"
 
 requires-python = ">=3.9"
 dependencies = [
-    "pynput"
+    "pynput",
+    "pysimplegui>=5.0.7",
 ]
 [project.optional-dependencies]
 dev = ["ipython",]

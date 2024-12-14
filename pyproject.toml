@@ -1,0 +1,23 @@
+[project]
+name = "bh_2024_backend"
+version = "0.1.0"
+description = "Soft for recording session of using PC"
+authors = [
+    {name="Temp team", email="team@temp.dev"}
+]
+readme = "README.md"
+
+requires-python = ">=3.9"
+dependencies = [
+    "pynput"
+]
+[project.optional-dependencies]
+dev = ["ipython",]
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/spyware"]

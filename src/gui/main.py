@@ -33,12 +33,12 @@ def submit_problem(date, description):
 
     try:
         os.remove(DATA_PATH / 'files.zip')
-    except:
+    except FileNotFoundError:
         pass
 
     with ZipFile(DATA_PATH / 'files.zip', 'w') as myzip:
         for file in list_files(DATA_PATH):
-            myzip.write(DATA_PATH / file)
+            myzip.write(DATA_PATH / file, arcname=file)
     print("ZIP: created")
 
     return 1

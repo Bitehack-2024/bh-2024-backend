@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 import os
 from pathlib import Path
 from zipfile import ZipFile
+from time import sleep
 
 DATA_PATH = Path(__file__).parent.parent / "data"
 
@@ -33,11 +34,15 @@ def submit_problem(date, description):
 
     try:
         os.remove(DATA_PATH / 'files.zip')
-    except FileNotFoundError:
-        pass
+    except Exception as e:
+        print(e)
+
+    files = list_files(DATA_PATH)
 
     with ZipFile(DATA_PATH / 'files.zip', 'w') as myzip:
-        for file in list_files(DATA_PATH):
+        for file in files:
+            if file == ".gitkeep":
+                continue
             myzip.write(DATA_PATH / file, arcname=file)
     print("ZIP: created")
 
